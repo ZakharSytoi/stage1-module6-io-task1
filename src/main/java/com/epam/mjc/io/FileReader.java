@@ -24,7 +24,7 @@ public class FileReader {
 
             inputStream.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return result;
     }
