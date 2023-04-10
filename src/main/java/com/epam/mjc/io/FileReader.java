@@ -7,7 +7,7 @@ import java.io.IOException;
 public class FileReader {
 
     public Profile getDataFromFile(File file) {
-        java.io.FileReader inputStream;
+        java.io.FileReader inputStream = null;
         StringBuilder tmpText = new StringBuilder();
         Profile result = new Profile();
         try {
@@ -22,9 +22,17 @@ public class FileReader {
             result.setEmail(textFinal.split("\n")[2].split(": ")[1]);
             result.setPhone(Long.parseLong(textFinal.split("\n")[3].split(": ")[1]));
 
-            inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        finally{
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return result;
     }
