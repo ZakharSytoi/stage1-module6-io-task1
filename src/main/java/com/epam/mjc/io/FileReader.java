@@ -7,11 +7,9 @@ import java.io.IOException;
 public class FileReader {
 
     public Profile getDataFromFile(File file) {
-        java.io.FileReader inputStream = null;
         StringBuilder tmpText = new StringBuilder();
         Profile result = new Profile();
-        try {
-            inputStream = new java.io.FileReader(file);
+        try(java.io.FileReader inputStream = new java.io.FileReader(file)) {
             int c;
             while ((c = inputStream.read()) != -1) {
                 tmpText.append((char) c);
@@ -24,15 +22,6 @@ public class FileReader {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally{
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
         return result;
     }
