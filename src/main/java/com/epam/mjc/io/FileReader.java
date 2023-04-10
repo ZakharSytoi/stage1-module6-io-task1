@@ -14,7 +14,7 @@ public class FileReader {
             inputStream = new java.io.FileReader(file);
             int c;
             while ((c = inputStream.read()) != -1) {
-                tmpText.append((char)c);
+                tmpText.append((char) c);
             }
             String textFinal = String.valueOf(tmpText);
             result.setName(textFinal.split("\n")[0].split(": ")[1]);
